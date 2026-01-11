@@ -162,7 +162,42 @@ PlatformIO for VSCode is used for managing dependencies, code compilation, and u
 
 2. Install VSCode.
 
-3. Follow these instructions to install the PlatformIO extension for VSCode: <https://platformio.org/install/ide?install=vscode>
+3. Install PlatformIO.
+
+   You can install PlatformIO using either method:
+
+   **Option A: Install PlatformIO using uv (Recommended)**
+   
+   This project includes a `pyproject.toml` file configured for [uv](https://github.com/astral-sh/uv), a fast Python package manager. To install PlatformIO and Python dependencies using uv:
+   
+   ```bash
+   # Install uv if you don't have it
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # Option 1: Use the Makefile (recommended)
+   make deps
+   
+   # Option 2: Use uv directly
+   uv sync
+   ```
+   
+   This will create a virtual environment (`.venv`) and install all dependencies. After installation, you need to activate the virtual environment:
+   
+   **On Linux/Mac:**
+   ```bash
+   source .venv/bin/activate
+   ```
+   
+   **On Windows:**
+   ```cmd
+   .venv\Scripts\activate
+   ```
+   
+   After activation, you can use `platformio` commands directly. Alternatively, you can use `uv run platformio` without activating the virtual environment.
+
+   **Option B: Install PlatformIO via VSCode Extension**
+   
+   Follow these instructions to install the PlatformIO extension for VSCode: <https://platformio.org/install/ide?install=vscode>
 
 4. Open the project in VSCode.
 
