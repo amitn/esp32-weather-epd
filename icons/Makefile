@@ -1,5 +1,8 @@
 SIZES := 16 24 32 48 64 96 128 160 196
 
+# Python command - can be overridden from parent Makefile
+PYTHON ?= python3
+
 # Generate the list of target directories based on sizes
 TARGETS := $(foreach size, $(SIZES), icons/$(size)x$(size))
 
@@ -8,10 +11,10 @@ TARGETS := $(foreach size, $(SIZES), icons/$(size)x$(size))
 all: $(TARGETS) final
 
 icons/%:
-	bash ./svg_to_headers.sh $(word 1, $(subst x, ,$*))
+	bash ./svg_to_headers.sh $(word 1, $(subst x, ,$*)) "$(PYTHON)"
 
 final: $(TARGETS)
-	python3 final_generate_icons_h.py
+	$(PYTHON) final_generate_icons_h.py
 
 clean:
 	rm -rf png icons

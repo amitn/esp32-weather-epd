@@ -18,6 +18,9 @@
 mkdir -p icons
 mkdir -p png
 
+# Python command - use second argument if provided, otherwise default to python3
+PYTHON_CMD="${2:-python3}"
+
 SVG_FILES="./svg/*.svg"
 PNG_PATH="./png/${1}x${1}"
 PNG_FILES="${PNG_PATH}/*.png"
@@ -62,7 +65,7 @@ if [ ! -e "$HEADER_PATH" ]; then
   do
     echo "Generating header for $f..."
     out="${HEADER_PATH}/$(basename $f .png | tr -s -c [:alnum:] _)${1}x${1}.h"
-    python3 png_to_header.py -i $f -o $out
+    ${PYTHON_CMD} png_to_header.py -i $f -o $out
   done
 
   echo "Generating include statements..."
